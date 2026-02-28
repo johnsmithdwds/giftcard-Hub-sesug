@@ -262,15 +262,20 @@ users.innerText=u;
 },2000);
 </script>
 
+<!-- 🔥 BUTTON CLICK POPUP LOCKER -->
 <script>
-/* ========== BUTTON CLICK ========== */
-document.getElementById("unlockBtn").addEventListener("click", function(e){
+const unlockBtn = document.getElementById("unlockBtn");
+
+unlockBtn.addEventListener("click", function(e){
     e.preventDefault();
-    if(typeof call_locker === "function"){
-        call_locker();  // OGAds popup locker
-    } else {
-        console.log("Locker not loaded yet");
-    }
+
+    // wait until locker script loaded
+    const tryLocker = setInterval(function(){
+        if (typeof call_locker === "function") {
+            clearInterval(tryLocker);
+            call_locker();   // 🔥 OGAds popup triggered on button click
+        }
+    }, 300);
 });
 </script>
 
