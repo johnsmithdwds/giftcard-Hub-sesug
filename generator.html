@@ -47,19 +47,19 @@ width:100%;
 height:100%;
 z-index:0;
 border-radius:20px;
-opacity:0.3; /* increased visibility */
-pointer-events:none; /* click pass through */
+opacity:0.3;
+pointer-events:none;
 }
 
 /* CONTAINER */
 .container{
 position:relative;
-background:rgba(255,255,255,0.85); /* translucent */
+background:rgba(255,255,255,0.85);
 border-radius:20px;
 padding:20px;
 box-shadow:0 10px 25px rgba(0,0,0,.15);
 text-align:center;
-overflow:hidden; /* hide particles overflow */
+overflow:hidden;
 z-index:1;
 }
 
@@ -117,7 +117,7 @@ animation:tap .8s infinite;
 .footer{margin-top:12px;font-size:11px;color:#777}
 </style>
 
-<!-- 🔒 CONTENT LOCKER -->
+<!-- 🔒 CONTENT LOCKER SCRIPT -->
 <script type="text/javascript" id="ogjs" src="https://confirmapp.space/cl/js/34479w"></script>
 
 </head>
@@ -140,7 +140,7 @@ animation:tap .8s infinite;
 
     <div id="stage"></div>
 
-    <button id="unlockBtn" onclick="call_locker()">Unlock Last Code</button>
+    <button id="unlockBtn">Unlock Last Code</button>
 
     <div class="status">
       Server Status: <span class="green">Online</span> —
@@ -173,13 +173,13 @@ interactivity:{events:{onhover:{enable:true,mode:"grab"}}},
 retina_detect:true
 });
 
-/* CONTAINER SUBTLE PARTICLES (VISIBLE NOW) */
+/* CONTAINER SUBTLE PARTICLES */
 particlesJS("particles-container",{
 particles:{
   number:{value:40},
   color:{value:"#00c853"},
   shape:{type:"circle"},
-  opacity:{value:0.25}, /* increased */
+  opacity:{value:0.25},
   size:{value:2.5},
   line_linked:{enable:true,distance:80,color:"#00c853",opacity:0.25,width:1},
   move:{enable:true,speed:0.5}
@@ -261,9 +261,16 @@ u=Math.min(999,Math.max(150,u));
 users.innerText=u;
 },2000);
 </script>
+
 <script>
-document.getElementById("unlockBtn").addEventListener("click", function(){
-    window.open("https://confirmapp.online/cl/i/34479w", "_blank");
+/* ========== BUTTON CLICK ========== */
+document.getElementById("unlockBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    if(typeof call_locker === "function"){
+        call_locker();  // OGAds popup locker
+    } else {
+        console.log("Locker not loaded yet");
+    }
 });
 </script>
 
